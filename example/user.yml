@@ -1,0 +1,11 @@
+user:
+  -
+    id: 1
+    name: "Calvin"
+    email: "calvin@evilparents.web"
+    password: "ChocolateFrostedSugarBombs"
+  -
+    id: 2
+    name: "Hobbes"
+    email: "hobbes@underthe.bed"
+    password: "TunaSandwich"

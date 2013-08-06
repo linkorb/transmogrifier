@@ -1,0 +1,5 @@
+<?xml version="1.0" ?>
+<dataset>
+    <user id="1" name="Calvin" email="calvin@evilparents.web" password="ChocolateFrostedSugarBombs" />
+    <user id="2" name="Hobbes" email="hobbes@underthe.bed" password="TunaSandwich" />
+</dataset>
