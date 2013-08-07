@@ -17,7 +17,7 @@ You can use Transmogrifier as a command-line utility (stand-alone, or as part of
 
 0. clone this git repository
 0. run `composer install` to install all dependencies
-0. run `bin/console --help` for a list of available commands
+0. run `bin/transmogrifier --help` for a list of available commands
 
 ### Through composer, in your PHP project:
 
@@ -41,7 +41,7 @@ The most interesting usage through the command-line is the `transmogrifier:apply
 
 You can use it like this:
 
-    bin/console transmogrifier:applydataset --dbname=test example/user.yml
+    bin/transmogrifier transmogrifier:applydataset --dbname=test example/user.yml
     
 This command will ensure that the `dbname` database contains the dataset specified in `example/user.yml`
 
