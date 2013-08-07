@@ -7,7 +7,7 @@ use Behat\Behat\Exception\PendingException;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 
-use LinkORB\Transmogrifier\BehatExtension\TransmogrifierContext;
+use LinkORB\TransmogrifierExtension\TransmogrifierContext;
 
 //
 // Require 3rd-party libraries here:
@@ -29,7 +29,6 @@ class FeatureContext extends BehatContext
      */
     public function __construct(array $parameters)
     {
-        $this->useContext('transmogrifier', new TransmogrifierContext($parameters));
+        $this->useContext('transmogrifierextension', new TransmogrifierContext($parameters));
     }
-    
 }

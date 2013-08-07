@@ -1,6 +1,6 @@
 <?php
 
-namespace LinkORB\Transmogrifier\BehatExtension;
+namespace LinkORB\TransmogrifierExtension;
 
 use Behat\Behat\Context\BehatContext;
 use LinkORB\Transmogrifier\Dataset;
@@ -13,13 +13,13 @@ class TransmogrifierContext extends BehatContext
      * Path to dataset files
      * @var string
      */
-    private $transmogrifier_dataset_path;
+    private $dataset_dir;
 
     /**
      * Path to database .conf files
      * @var string
      */
-    private $transmogrifier_dbconf_path;
+    private $dbconf_dir;
 
     /**
      * The database handle
@@ -27,7 +27,6 @@ class TransmogrifierContext extends BehatContext
      * @var Database
      */
     private $db;
-
 
     /**
      * Initializes context.
@@ -37,28 +36,39 @@ class TransmogrifierContext extends BehatContext
      */
     public function __construct(array $parameters)
     {
-        //print_r($parameters); exit('asdas');
-        $this->transmogrifier_dataset_path = __DIR__ . "/../../../../";
-        if (isset($parameters['transmogrifier_dataset_path'])) {
-            $this->transmogrifier_dataset_path = $parameters['transmogrifier_dataset_path'];
-        }
-
-        if (isset($parameters['transmogrifier_dbconf_path'])) {
-            $this->transmogrifier_dbconf_path = $parameters['transmogrifier_dbconf_path'];
-        }
-        //exit();
     }
+
+
+    public function setDatasetDir($path)
+    {
+        $this->dataset_dir = $path;
+    }
+
+    public function setDbConfDir($path)
+    {
+        $this->dbconf_dir = $path;
+    }
+
 
     /**
      * @Given /^transmogrifier is enabled$/
      */
     public function transmogrifierIsEnabled()
     {
-
         return true;
     }
 
-    
+    /**
+     * @Given /^I connect to database "([^"]*)"$/
+     */
+    public function iConnectToDatabase($dbname)
+    {
+        $this->db = new Database();
+        $this->db->setDbConfDir($this->dbconf_dir);
+        $this->db->parseConf($dbname);
+        $this->db->connect();
+    }
+
 
     /**
      * @When /^I apply transmogrifier dataset "([^"]*)"$/
@@ -66,8 +76,7 @@ class TransmogrifierContext extends BehatContext
      */
     public function iApplyTransmogrifierDataset($filename)
     {
-
-        $filename = $this->transmogrifier_dataset_path . $filename;
+        $filename = $this->dataset_dir . '/' . $filename;
         if (!file_exists($filename)) {
             throw new \RuntimeException('File not found: ' . $filename);
         }
@@ -94,15 +103,5 @@ class TransmogrifierContext extends BehatContext
             throw new \RuntimeException('Rowcount did not match. Expected: ' . $count . '. Rows in database table: ' . $res->rowCount());
         }
 
-    }
-
-     /**
-     * @Given /^I connect to database "([^"]*)"$/
-     */
-    public function iConnectToDatabase($dbname)
-    {
-        $this->db = new Database();
-        $this->db->parseConf($dbname);
-        $this->db->connect();
     }
 }

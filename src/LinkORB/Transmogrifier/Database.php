@@ -34,10 +34,17 @@ class Database
         $this->dbname = $input->getOption('dbname');
     }
 
+    private $dbconf_dir = '/share/config/database';
+
+    public function setDbConfDir($path)
+    {
+        $this->dbconf_dir = $path;
+    }
+
     public function parseConf($filename)
     {
-        if (file_exists('/share/config/database/' . $filename . '.conf')) {
-            $filename = '/share/config/database/' . $filename . '.conf';
+        if (file_exists($this->dbconf_dir . '/' . $filename . '.conf')) {
+            $filename = $this->dbconf_dir . '/' . $filename . '.conf';
         }
         if (file_exists($filename)) {
             $ini = parse_ini_file($filename, false, INI_SCANNER_RAW);
@@ -45,9 +52,6 @@ class Database
             $this->username = $ini['username'];
             $this->password = $ini['password'];
             $this->host = $ini['server'];
-
-
-
         } else {
             throw new \RuntimeException("dbconf file not found: " . $filename);
         }
