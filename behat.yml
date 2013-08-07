@@ -1,0 +1,8 @@
+# This is the main behat.yml file
+
+default:
+    context:
+        parameters:
+            transmogrifier_dbconf_path: /share/config/database/
+            transmogrifier_dataset_path: example/
+

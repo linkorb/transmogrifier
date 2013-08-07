@@ -66,7 +66,7 @@ class Dataset
     public function applyTo(Database $db)
     {
         $pdo = $db->getPdo();
-        $connection = new \PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection($pdo, $this->dbname);
+        $connection = new \PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection($pdo, $db->getName());
         $databasetester = new \PHPUnit_Extensions_Database_DefaultTester($connection);
         $setupoperation = \PHPUnit_Extensions_Database_Operation_Factory::CLEAN_INSERT();
         $databasetester->setSetUpOperation($setupoperation);

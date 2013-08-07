@@ -73,6 +73,7 @@ class DatasetApplyCommand extends Command
         ;
     }
 
+
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
@@ -98,15 +99,5 @@ class DatasetApplyCommand extends Command
         $f->loadDatasetFile($filename, $format);
         $f->applyTo($db);
 
-        /*
-        $stmt = $db->getPdo()->prepare("SELECT id, name, email, password FROM user");
-
-        // call the stored procedure
-        $stmt->execute();
-        $rows = $stmt->fetchAll();
-        foreach ($rows as $rs) {
-            echo $rs['id'] . ": " . $rs['name'] . ":" . $rs['email'] . "/" . $rs['password'] . "\n";
-        }
-        */
     }
 }
