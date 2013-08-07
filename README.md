@@ -23,7 +23,9 @@ You can use Transmogrifier as a command-line utility (stand-alone, or as part of
 
 Open your `composer.json` file, and add this to the `require` section:
 
-    "linkorb/transmogrifier": "dev-master"
+```json
+"linkorb/transmogrifier": "dev-master"
+```
 
 You can now run `vendor/bin/transmogrifier`.
 
@@ -31,7 +33,9 @@ You can now run `vendor/bin/transmogrifier`.
 
 Add the following line to an existing Symfony/Console application in order to enable the Transmogrifier commands to it:
 
-    $application->add(new \LinkORB\Transmogrifier\Command\DatasetApplyCommand());
+```php
+$application->add(new \LinkORB\Transmogrifier\Command\DatasetApplyCommand());
+```
 
 ### Available commands
 
@@ -41,8 +45,10 @@ The most interesting usage through the command-line is the `transmogrifier:apply
 
 You can use it like this:
 
-    bin/transmogrifier transmogrifier:applydataset --dbname=test example/user.yml
-    
+```
+bin/transmogrifier transmogrifier:applydataset --dbname=test example/user.yml
+```
+
 This command will ensure that the `dbname` database contains the dataset specified in `example/user.yml`
 
 ## PHP Library
@@ -53,76 +59,39 @@ You can use the Transmogrifier very easily from within your own PHP projects as 
 
 pen your `composer.json` file, and add this to the `require` section:
 
-    "linkorb/transmogrifier": "dev-master"
+```json
+"linkorb/transmogrifier": "dev-master"
+```
 
 ### How to use the library
 
 The 2 main classes are:
 
-    * `Dataset`: A class that can load datasets from files, and apply them to databases.
-    * `Database`: A connection to a database, providing helpers for initializing the connection. 
+* `Dataset`: A class that can load datasets from files, and apply them to databases.
+* `Database`: A connection to a database, providing helpers for initializing the connection. 
 
 Here's an example usage:
 
-    $db = new Database();
-    // Optionally initialize db parameters by file, cli options, or explicit values
-    $db->parseConf('/path/to/my/dbconf/test.conf');
-    $db->connect();
+```php
+$db = new Database();
+// Optionally initialize db parameters by file, cli options, or explicit values
+$db->parseConf('/path/to/my/dbconf/test.conf');
+$db->connect();
 
-    $dataset = new Dataset();
-    $dataset->loadDatasetFile('/path/to/my/dataset.yml');
-    $dataset->applyTo($db);
+$dataset = new Dataset();
+$dataset->loadDatasetFile('/path/to/my/dataset.yml');
+$dataset->applyTo($db);
+```
 
 ## Behat Extension
 
-You can use Transmogrifier directly from your Behat `.feature` files!
+There is a Transmogrifier Extension available for Behat!
 
-Adding the extension will activate a few new Gherkin commands to help you initialize your database testing fixtures.
+This allows you to use Transmogrifier directly from your Behat .feature files.
 
-### Installing the extension through composer
+Check out the extension and it's documentation here:
 
-Open your `composer.json` file, and add this to the `require` section:
-
-    "linkorb/transmogrifier": "dev-master"
-
-### Enabling the Behat extension
-
-Edit your `features/bootstrap/FeatureContext.php` file, and add the following line to the `__construct` method:
-
-    $this->useContext(
-        'transmogrifier',
-        new \LinkORB\TransmogrifierExtension\TransmogrifierContext($parameters)
-    );
-
-### How to use the extension
-
-You can use the following new syntax in your `.feature` files:
-
-    Scenario: Applying a yml dataset to the `test` database
-        Given I connect to database "test"
-        When I apply dataset "user.yml"
-        Then I should have "2" records in the "user" table
-
-This example scenario will connect to the database `test`, load dataset `user.yml`, and apply it.
-After that it will verify the `user` table contains 2 records (just like the yml file).
-
-### Configuring Behat
-
-For this to work, you will need to tell Behat and Transmogrifier where to find your datasets, and where to find your database config files.
-
-Edit your `behat.yml` file, and add the following:
-
-    default:
-        extensions:
-            LinkORB\TransmogrifierExtension\Extension:
-                dbconf_dir: /share/config/database/
-                dataset_dir: example/
-
-These paths can be either absolute or relative from the directory where you start Behat.
-
-### Behat example
-
-The `features/` directory in this repository contains a fully functional `transmogrifier.feature` file.
+* [https://github.com/linkorb/transmogrifierextension](https://github.com/linkorb/transmogrifierextension)
 
 ## Supported file-formats
 
@@ -144,11 +113,13 @@ To simplify connecting to your database, Transmogrify can load conneciton settin
 
 An example file looks like this:
 
-    name=test
-    server=127.0.0.1
-    username=susie
-    password=mrbun
-    driver=mysql
+```ini
+name=test
+server=127.0.0.1
+username=susie
+password=mrbun
+driver=mysql
+```
 
 You can use these `.conf` files in all Transmogrifier modes: Command-line, Behat, or library.
 The connection is established through `PDO`, so all PDO supported databases will work.
@@ -164,5 +135,6 @@ The examples will ensure 2 users, 'Calvin' and 'Hobbes', are registed in your `u
 
 Before you can try these out, use the following SQL to generate the `user` table in your `test` database:
 
-    CREATE TABLE user (id int, name varchar(16), email varchar(32), password varchar(32));
-
+```sql
+CREATE TABLE user (id int, name varchar(16), email varchar(32), password varchar(32));
+```
