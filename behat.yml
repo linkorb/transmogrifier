@@ -1,7 +1,0 @@
-# This is the main behat.yml file
-
-default:
-    extensions:
-        LinkORB\TransmogrifierExtension\Extension:
-            dbconf_dir: /share/config/database/
-            dataset_dir: example/

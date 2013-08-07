@@ -8,8 +8,7 @@
     "require": {
         "symfony/console": "2.4.*@dev",
         "phpunit/phpunit": "3.7.*@dev",
-        "phpunit/dbunit": "1.2.*@dev",
-        "behat/behat": "2.4.*@stable"
+        "phpunit/dbunit": "1.2.*@dev"
     },
     "require-dev": {
         "sami/sami": "1.0.*@dev",
