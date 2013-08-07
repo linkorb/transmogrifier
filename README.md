@@ -91,7 +91,7 @@ Edit your `features/bootstrap/FeatureContext.php` file, and add the following li
 
     $this->useContext(
         'transmogrifier',
-        new \LinkORB\Transmogrifier\BehatExtension\TransmogrifierContext($parameters)
+        new \LinkORB\TransmogrifierExtension\TransmogrifierContext($parameters)
     );
 
 ### How to use the extension
@@ -113,10 +113,10 @@ For this to work, you will need to tell Behat and Transmogrifier where to find y
 Edit your `behat.yml` file, and add the following:
 
     default:
-        context:
-            parameters:
-                transmogrifier_dbconf_path: /path/to/my/dbconf-files/
-                transmogrifier_dataset_path: /path/to/my/dataset-files/
+        extensions:
+            LinkORB\TransmogrifierExtension\Extension:
+                dbconf_dir: /share/config/database/
+                dataset_dir: example/
 
 These paths can be either absolute or relative from the directory where you start Behat.
 
