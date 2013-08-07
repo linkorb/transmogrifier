@@ -7,7 +7,7 @@ You can use it in the following ways:
 
 1. As a simple command-line utility (great for your build scripts and continuous integration)
 2. As a PHP library
-3. As a set a Behat extension, enabling Gherkin statements for automated BDD database tests
+3. As a Behat extension, enabling Gherkin statements for automated BDD database testing
 
 ## 1. Command-line utility
 
