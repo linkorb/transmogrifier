@@ -5,11 +5,11 @@ Transmogrifier is a tool to help setup your database fixtures before running you
 
 You can use it in the following ways:
 
-* As a simple command-line utility (great for your build scripts and continuous integration)
-* As a PHP library
-* As a set of Gherkin/Behat statements for automated BDD tests
+1. As a simple command-line utility (great for your build scripts and continuous integration)
+2. As a PHP library
+3. As a set a Behat extension, enabling Gherkin statements for automated BDD database tests
 
-## Command-line utility
+## 1. Command-line utility
 
 You can use Transmogrifier as a command-line utility (stand-alone, or as part of your PHP project through composer).
 
@@ -51,7 +51,7 @@ bin/transmogrifier transmogrifier:applydataset --dbname=test example/user.yml
 
 This command will ensure that the `dbname` database contains the dataset specified in `example/user.yml`
 
-## PHP Library
+## 2. PHP Library
 
 You can use the Transmogrifier very easily from within your own PHP projects as a library.
 
@@ -83,7 +83,7 @@ $dataset->loadDatasetFile('/path/to/my/dataset.yml');
 $dataset->applyTo($db);
 ```
 
-## Behat Extension
+## 3. Behat Extension
 
 There is a Transmogrifier Extension available for Behat!
 
@@ -105,7 +105,9 @@ The dataset importer is based on phpunit/dbunit. It currently supports the follo
 The Dataset loader guesses the format based on the file-extension.
 
 Please refer to the `example/` directory for datasets in these formats.
-The PHPUnit documentation contains further information about the loaders: [link](http://phpunit.de/manual/current/en/database.html)
+The PHPUnit documentation contains further information about the loaders: 
+
+* [PHPUnit DBUnit documentation](http://phpunit.de/manual/current/en/database.html)
 
 ## Database .conf files
 
