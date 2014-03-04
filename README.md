@@ -140,3 +140,10 @@ Before you can try these out, use the following SQL to generate the `user` table
 ```sql
 CREATE TABLE user (id int, name varchar(16), email varchar(32), password varchar(32));
 ```
+
+## Brought to you by the LinkORB Engineering team
+
+<img src="http://www.linkorb.com/d/meta/tier1/images/linkorbengineering-logo.png" width="200px" /><br />
+Check out our other projects at [linkorb.com/engineering](http://www.linkorb.com/engineering).
+
+Btw, we're hiring!
