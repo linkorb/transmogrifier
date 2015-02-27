@@ -78,6 +78,7 @@ class DatasetApplyCommand extends Command
     {
 
         $filename = $input->getArgument('filename');
+        $format = $input->getOption('format');
 
         $db = new Database();
         $db->parseOptions($input);
