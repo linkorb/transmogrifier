@@ -3,6 +3,7 @@
 namespace LinkORB\Transmogrifier;
 
 use LinkORB\Transmogrifier\Database;
+use LinkORB\Transmogrifier\Parser\YamlParser;
 
 class Dataset
 {
@@ -50,7 +51,7 @@ class Dataset
                 break;
             case "yml":
             case "yaml":
-                $ds = new \PHPUnit_Extensions_Database_DataSet_YamlDataSet($filename);
+                $ds = new \PHPUnit_Extensions_Database_DataSet_YamlDataSet($filename, new YamlParser());
                 break;
             case "xml":
                 $ds = new \PHPUnit_Extensions_Database_DataSet_XmlDataSet($filename);
